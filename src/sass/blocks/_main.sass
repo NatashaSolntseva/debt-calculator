@@ -1,0 +1,206 @@
+.main
+    padding-bottom: 87px
+.form
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    &__left
+        display: flex
+        flex-direction: column
+        align-items: center              
+    &__slider-wrap
+        padding-bottom: 86px
+        display: flex
+        flex-direction: column
+        width: 100%
+        gap:88px     
+    &__date-container
+        display: flex
+        flex-direction: column
+        padding-bottom: 67px
+        width: 100%
+    &__wrap
+        display: flex
+    &__text-percent
+        font-family: $raleway-sb
+        font-size: 29px                
+    &__date-text
+        font-family: $raleway-sb
+        font-size: 17px
+        text-transform: capitalize
+        color:  $bright-color
+        text-align: right
+        padding-bottom: 12px
+        padding-right: 50px
+    &__radio-container    
+        display: flex
+        width: 100%
+        gap: 185px
+    &__right
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        padding-left: 50px
+    &__title
+        font-family: $raleway-eb
+        font-size: 43px
+        text-transform: capitalize
+        padding-bottom: 54px                
+    &__sum-total
+        font-family: $raleway-black
+        font-size: 63px
+        text-transform: capitalize
+        color:  $bright-color
+    &__caption        
+        font-family: $raleway-sb
+        font-size: 17px
+        text-transform: capitalize
+        padding-bottom: 112px
+    &__info-container
+        display: flex
+        justify-content: space-between
+        gap: 55px
+        padding-bottom: 56px
+    &__info
+        width: 288px
+        background: $light-color
+        display: flex
+        flex-direction: column
+        text-align: center
+        padding-top: 25px
+        padding-left: 42px
+        padding-right: 43px
+        padding-bottom: 11px
+        &_type_accent
+            background: $bright-color-2
+    &__info-text
+        font-family: $raleway-sb
+        font-size: 17px
+        letter-spacing: 6px
+        text-transform: uppercase
+        padding-bottom: 5px
+    &__sum                
+        font-family: $raleway-eb
+        font-size: 43px
+    &__btn
+        cursor: pointer        
+        border: 1px solid $bright-color
+        width: 100%
+        padding-top: 17px
+        padding-bottom: 17px
+        font-family: $raleway-sb
+        font-size: 19px
+        letter-spacing: 5px
+        text-transform: uppercase
+        background: transparent        
+        &:hover
+            background: $bright-color-2
+            transition: background 0.6s ease
+                    
+.line
+    border: 1px solid $black-color
+.radio-btn
+    display: flex
+    align-items: center
+    gap:8px
+    &__input
+        appearance: none
+        width: 24px
+        height: 24px
+        border: 1px solid $bright-color
+        border-radius: 50%
+        outline: none
+        transition: border-width 0.2s ease
+        &:checked
+            border-width: 6px
+    &__label    
+        font-family: $raleway-sb
+        font-size: 17px        
+        text-transform: capitalize
+.slider
+    display: flex
+    flex-direction: column
+    gap:14px
+    position: relative    
+    &__title
+        font-family: $raleway-b
+        font-size: 14px        
+        text-transform: capitalize
+        color: $dark-color                   
+    &__bar
+        -webkit-appearance: none
+        appearance: none
+        width: 100%
+        height: 8px
+        border-radius: 39px 
+        background-color: $light-color-2        
+        &::-webkit-slider-thumb 
+            -webkit-appearance: none
+            appearance: none
+            width: 26px
+            height: 26px
+            background-color: $bright-color
+            border: none
+            border-radius: 50%
+            cursor: pointer
+            position: relative
+            z-index: 2 
+        &::-moz-range-thumb    
+            appearance: none
+            width: 26px
+            height: 26px
+            background-color: $bright-color
+            border: none
+            border-radius: 50%
+            cursor: pointer
+            position: relative
+            z-index: 2  
+        &::-ms-thumb
+            appearance: none
+            width: 26px
+            height: 26px
+            background-color: $bright-color
+            border: none
+            border-radius: 50% 
+            cursor: pointer
+            position: relative
+            z-index: 2 
+        &::thumb  
+            appearance: none
+            width: 26px
+            height: 26px
+            background-color: $bright-color
+            border: none
+            border-radius: 50%
+            cursor: pointer
+            position: relative
+            z-index: 2
+    &__progress
+        width: 50%
+        height: 8px
+        border-radius: 39px 
+        background:  $bright-color
+        position: absolute
+        top: 33px
+        left: 0
+        transform: translateY(-50%)
+        pointer-events: none
+
+    &__caption-wrap    
+        display: flex
+        width: 100%
+        align-items: center
+        justify-content: space-between
+    &__caption-text
+        font-family: $raleway-reg
+        font-size: 14px        
+        text-transform: capitalize
+        color: $dark-color
+    &__value-container
+        text-align: center        
+        
+        
+    &__value-text
+        font-family: $raleway-b
+        font-size: 43px
+        text-transform: capitalize            
