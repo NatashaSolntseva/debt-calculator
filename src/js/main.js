@@ -58,32 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cashRadio.checked) {
       basePercent -= 0.5;
     }
-    return basePercent / 100; 
+    return basePercent / 100;
   }
 
   function calculateMonthlyPayment() {
-    const principal = parseFloat(borrowValue.value);    
-    const interestRateYearly = calculatePercent();    
-    const interestRateMonth = interestRateYearly / 12;    
-    const months = parseFloat(termValue.value * 12);    
-    const monthlyInterest = Math.pow(1 + interestRateMonth, months);   
+    const principal = parseFloat(borrowValue.value);
+    const interestRateYearly = calculatePercent();
+    const interestRateMonth = interestRateYearly / 12;
+    const months = parseFloat(termValue.value * 12);
+    const monthlyInterest = Math.pow(1 + interestRateMonth, months);
     const monthlyPaymentAmount =
-      (principal * interestRateMonth * monthlyInterest) / (monthlyInterest - 1);    
+      (principal * interestRateMonth * monthlyInterest) / (monthlyInterest - 1);
 
-    return "£" + monthlyPaymentAmount.toFixed(2); 
+    return "£" + monthlyPaymentAmount.toFixed(2);
   }
 
   function calculateToRepay() {
     const monthlyPaymentValue = parseFloat(
       monthlyPayment.textContent.replace("£", "").replace(",", "")
     ); // Get the value of the monthly payment and convert it to a number
-   
-    const numberOfMonths = parseFloat(termValue.value * 12); 
-
+    const numberOfMonths = parseFloat(termValue.value * 12);
     const toRepay = monthlyPaymentValue * numberOfMonths;
-    
 
-    return "£" + toRepay.toFixed(2); 
+    return "£" + toRepay.toFixed(2);
   }
 
   function setDefaultPercent() {
@@ -117,12 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
   borrowValue.addEventListener("input", () => {
     updateValueElements();
     updateMonthlyPayment();
-    updateToRepay(); /
+    updateToRepay();
   });
   termValue.addEventListener("input", () => {
     updateValueElements();
     updateMonthlyPayment();
-    updateToRepay(); 
+    updateToRepay();
   });
 
   // Updating the monthly payment on page load
