@@ -42,7 +42,7 @@ const html = function () {
 
 const scripts = function () {
   return gulp
-    .src(["src/js/**/*.js"])
+    .src(["node_modules/flatpickr/dist/flatpickr.min.js", "src/js/**/*.js"])
     .pipe(concat("main.min.js"))
     .pipe(uglify())
     .pipe(gulp.dest("dist/js"))

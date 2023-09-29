@@ -4,6 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="css/style.min.css" />
     <title>Loan Calculator</title>
   </head>
@@ -71,7 +96,25 @@
                   <div>
                     <span class="form__text-percent"></span>
                   </div>
-                  <div><input class="form__input-date" type="date" /></div>
+                  <!----------------------------------------------------->
+                  <div class="flatpickr flatpickr-container">
+                    <input
+                      class="flatpickr-container__input-date"
+                      type="text"
+                      id="datePicker"
+                      data-input
+                    />
+                    <a
+                      class="input-button flatpickr-container__btn"
+                      title="toggle"
+                      data-toggle
+                    >
+                      <i
+                        class="flatpickr-container__icon-calendar icon-calendar"
+                      ></i>
+                    </a>
+                  </div>
+                  <!------------------------------------------------------>
                 </div>
               </div>
               <div class="form__radio-container">

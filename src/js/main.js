@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const percentText = document.querySelector(".form__text-percent");
   const monthlyPayment = document.querySelector(".form__sum-total");
   const toRepayElement = document.getElementById("torepay");
+  const datePickerInput = document.getElementById("datePicker");
+  const today = new Date();
+  const threeMonthsFromToday = new Date(today);
 
   function updateSliderProgress(slider) {
     const maxVal = slider.getAttribute("max");
@@ -18,19 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
     return val;
   }
 
+  function formatCurrency(value) {
+    return parseFloat(value).toLocaleString("en-US", {
+      style: "currency",
+      currency: "GBP",
+      minimumFractionDigits: 2,
+    });
+  }
+
   function updateValueElements() {
-    const formattedValue = parseFloat(borrowValue.value).toLocaleString(
-      "en-US",
-      {
-        style: "currency",
-        currency: "GBP",
-        minimumFractionDigits: 2,
-      }
-    );
+    const formattedBorrowValue = formatCurrency(borrowValue.value);
 
     outputTerm.innerHTML = termValue.value;
-    outputValue.innerHTML = formattedValue;
-    borrowingSum.innerHTML = formattedValue;
+    outputValue.innerHTML = formattedBorrowValue;
+    borrowingSum.innerHTML = formattedBorrowValue;
+
+    const formattedMonthlyPayment = formatCurrency(calculateMonthlyPayment());
+    const formattedToRepay = formatCurrency(calculateToRepay());
+
+    monthlyPayment.textContent = formattedMonthlyPayment;
+    toRepayElement.textContent = formattedToRepay;
   }
 
   function initializeSliders() {
@@ -58,6 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cashRadio.checked) {
       basePercent -= 0.5;
     }
+    threeMonthsFromToday.setMonth(today.getMonth() + 3);
+    const selectedDate = new Date(datePickerInput.value);
+    if (selectedDate > threeMonthsFromToday) {
+      basePercent += 1.85;
+    }
+
     return basePercent / 100;
   }
 
@@ -70,17 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthlyPaymentAmount =
       (principal * interestRateMonth * monthlyInterest) / (monthlyInterest - 1);
 
-    return "£" + monthlyPaymentAmount.toFixed(2);
+    return monthlyPaymentAmount.toFixed(2);
   }
 
   function calculateToRepay() {
     const monthlyPaymentValue = parseFloat(
       monthlyPayment.textContent.replace("£", "").replace(",", "")
-    ); // Get the value of the monthly payment and convert it to a number
+    );
     const numberOfMonths = parseFloat(termValue.value * 12);
     const toRepay = monthlyPaymentValue * numberOfMonths;
 
-    return "£" + toRepay.toFixed(2);
+    return toRepay.toFixed(2);
   }
 
   function setDefaultPercent() {
@@ -88,11 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateMonthlyPayment() {
-    monthlyPayment.textContent = calculateMonthlyPayment();
+    monthlyPayment.textContent = formatCurrency(calculateMonthlyPayment());
   }
 
   function updateToRepay() {
-    toRepayElement.textContent = calculateToRepay();
+    toRepayElement.textContent = formatCurrency(calculateToRepay());
   }
 
   function handleRadioChange() {
@@ -100,6 +116,29 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMonthlyPayment();
     updateToRepay();
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const borrowValueData = borrowValue.value;
+    const termValueData = termValue.value;
+    const datePickerData = datePickerInput.value;
+    const depositRadioData = depositRadio.checked;
+    const cashRadioData = cashRadio.checked;
+
+    const formData = {
+      borrowValue: borrowValueData,
+      termValue: termValueData,
+      datePicker: datePickerData,
+      depositRadio: depositRadioData,
+      cashRadio: cashRadioData,
+    };
+
+    console.log("Form Data:", formData);
+  }
+
+  const form = document.querySelector(".form");
+  form.addEventListener("submit", handleSubmit);
 
   // Set default values on the page
   setDefaultPercent();
@@ -127,4 +166,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Updating the total amount to repay on page load
   updateToRepay();
+
+  // Add an input event listener to the datePickerInput to calculate percent
+  datePickerInput.addEventListener("input", () => {
+    setDefaultPercent();
+  });
+
+  flatpickr(".flatpickr", {
+    wrap: true,
+    defaultDate: "today",
+    minDate: "today",
+  });
 });

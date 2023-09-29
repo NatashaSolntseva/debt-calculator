@@ -1,3 +1,4 @@
+@import '../../node_modules/flatpickr/dist/flatpickr.min.css'
 @import 'libs/normalize'
 @import 'base/fonts'
 @import 'base/variables'
@@ -6,8 +7,6 @@
 @import 'blocks/header'
 @import 'blocks/main'
 @import 'blocks/footer'
-
-
 
 
 body 
@@ -28,8 +27,7 @@ body
     &.locked 
         overflow: hidden
     @include sm 
-        font-size: 16px
-    
+        font-size: 16px   
 
 
 * 
@@ -83,19 +81,15 @@ a
     @media(max-width: 576px) 
         padding: 0 30px
 
-   
 .section-title
     font-size: 63px
     line-height: normal
-    // @include md
-    //     font-size: 75px
-    //     line-height: 110%
+    @include md
+        font-size: 50px        
     @include sm
+        font-size: 40px
+    @include xs
         font-size: 34px
-    // @include xs
-    //     font-size: 45px
-    // @include xxs
-    //     font-size: 28px
     
 
 
