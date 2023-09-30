@@ -176,5 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
     wrap: true,
     defaultDate: "today",
     minDate: "today",
+    disableMobile: "true",
   });
 });
